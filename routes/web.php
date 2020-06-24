@@ -12,10 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('template', 'layouts.template');
+Route::match(["GET", "POST"], "/register", function(){
+    return redirect('login');
+})->name("register");
+
+Route::resource('user', 'UserController');
