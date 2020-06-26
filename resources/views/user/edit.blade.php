@@ -12,19 +12,20 @@ Edit Data User
                         @include('alert.error')       
                     </div>
                     <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{ route('user.update', [$user->id)] }}">
+                            <form class="form-horizontal" method="post" action="{{ route('user.update', [$user->id]) }}">
                                 {{ csrf_field() }}
+                                {{ method_field('PUT') }}
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="nama" class="col-sm-2 control-label">Nama</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
                                     </div>
                                 </div>
                                     <div class="form-group">
                                         <label for="username" class="col-sm-2 control-label">Username</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="username" name="username" value="{{ $user->name }}">
+                                            <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -43,15 +44,15 @@ Edit Data User
                                         <label for="level" class="col-sm-2 control-label">Level</label>
                                         <div class="col-sm-10">
                                             <select name="level" id="level" class="form-control">
-                                                <option value="admin" @if($user->level == 'admin') selected @endif>Administrator</option>
-                                                <option value="staf" @if($user->level == 'staf') selected @endif>Staf</option>
+                                                <option value="admin" @if($user->level == 'admin') selected @endif> Administrator</option>
+                                                <option value="staf" @if($user->level == 'staf') selected @endif> Staf</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">
-                                    <button type="submit" name="tombol" class="btn btn-info pull-right">Save</button>
+                                    <button type="submit" name="tombol" class="btn btn-info pull-right">Update</button>
                                 </div>
                                 <!-- /.box-footer -->
                             </form>

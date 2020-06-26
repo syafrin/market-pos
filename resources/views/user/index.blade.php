@@ -51,7 +51,16 @@
                             <td>{{ $row->username }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->level }}</td>
-                            <td> - </td>
+                            <td> 
+                            <form method="post" action="{{ route('user.destroy', [$row->id])}}" onsubmit="return confirm('yakin akan mengubah data ini ?')">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <a href="{{ route('user.edit', [$row->id])}}" class="btn btn-warning" >edit</a>
+                                <button type="submit" class="btn btn-danger">
+                                    Delete
+                                </button>                           
+                            </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

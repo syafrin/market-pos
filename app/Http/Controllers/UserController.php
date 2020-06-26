@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -78,7 +79,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
+
     }
 
     /**
@@ -90,7 +93,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $data = $request->all();
+        $validasi = Validator::make($data, [
+            'name'=> 'required|max:255',
+            'username'=> 'required|max:100|unique:users,username,'.$id,
+            'email'=>'required|email|max:255|unique:users,email,'.$id,
+             'password'=>'sometimes|nullable|min:6',
+             'level'=>'required'
+        ]);
+        if($validasi->fails()){
+            return redirect()->route('user.edit', [$id])->withErrors($validasi);
+        }
+        if($request->input('password')){
+            $data['password'] = bcrypt($data['password']);
+        }else{
+            $data = Arr::except($data, ['password']);
+        }
+        $user->update($data);
+        return redirect()->route('user.index')->with('status','user berhasil diubah');
     }
 
     /**
@@ -101,6 +122,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::findOrFail($id);
+        $data->delete();
+        return redirect()->route('user.index')->with('status', 'User Berhasil Dihapus');
     }
 }
