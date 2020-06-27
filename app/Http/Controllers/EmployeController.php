@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employe;
 use Validator;
+use Illuminate\Support\Arr;
+
 class EmployeController extends Controller
 {
     /**
@@ -75,7 +77,8 @@ class EmployeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employe = Employe::findOrFail($id);
+        return view('employe.edit', compact('employe'));
     }
 
     /**
@@ -87,7 +90,24 @@ class EmployeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $employe = Employe::findOrFail($id);
+        $data = $request->all();
+        $validasi = Validator::make($data, [
+            'password'=>'sometimes|nullable|min:6|max:50',
+            'nama_pegawai'=>'required|max:255',
+            'alamat'=>'required|max:255'
+        ]);
+        if($validasi->fails()){
+            return redirect()->route('employe.edit', [$id])->withInput()->withErrors($validasi);
+        }
+
+        if($request->input('password')){
+            $data['password'] = password_hash($request->input('password'), PASSWORD_DEFAULT);
+        }else {
+            $data = Arr::except($data, ['password']);
+        }
+        $employe->update($data);
+        return redirect()->route('employe.index')->with('status','Data Pegawai Berhasil Disimpan');
     }
 
     /**
@@ -98,6 +118,8 @@ class EmployeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employe = Employe::findOrFail($id);
+        $employe->delete();
+        return redirect()->route('employe.index')->with('status', 'Data Pegawai Berhasil Dihapus');
     }
 }

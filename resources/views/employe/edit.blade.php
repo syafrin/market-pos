@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-Edit Data User
+Edit Data Pegawai
 @endsection
 
 @section('content')
@@ -12,26 +12,14 @@ Edit Data User
                         @include('alert.error')       
                     </div>
                     <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{ route('user.update', [$user->id]) }}">
+                            <form class="form-horizontal" method="post" action="{{ route('employe.update', [$employe->username]) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <label for="nama" class="col-sm-2 control-label">Nama</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
-                                    </div>
-                                </div>
-                                    <div class="form-group">
                                         <label for="username" class="col-sm-2 control-label">Username</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Email</label>
-                                        <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                                            <input type="text" class="form-control" id="username" value="{{ $employe->username }}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -41,14 +29,36 @@ Edit Data User
                                         </div>
                                         </div>
                                     <div class="form-group">
-                                        <label for="level" class="col-sm-2 control-label">Level</label>
+                                        <label for="nama_pegawai" class="col-sm-2 control-label">Nama Pegawai</label>
                                         <div class="col-sm-10">
-                                            <select name="level" id="level" class="form-control">
-                                                <option value="admin" @if($user->level == 'admin') selected @endif> Administrator</option>
-                                                <option value="staf" @if($user->level == 'staf') selected @endif> Staf</option>
+                                        <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai" value="{{ $employe->nama_pegawai }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jk" class="col-sm-2 control-label">Jenis Kelamin</label>
+                                        <div class="col-sm-10">
+                                            <select name="jk" id="jk" class="form-control">
+                                                <option value="pria"  @if ($employe->jk == 'pria') selected @endif>Pria</option>
+                                                <option value="wanita" @if ($employe->jk == 'wanita') selected @endif>Wanita</option>
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="alamat" class="col-sm-2 control-label">Alamat Pegawai</label>
+                                        <div class="col-sm-10">
+                                        <textarea class="form-control" id="alamat" name="alamat"> {{ $employe->alamat }}</textarea>
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="is_active" class="col-sm-2 control-label">Status</label>
+                                        <div class="col-sm-10">
+                                            <select name="is_active" id="is_active" class="form-control">
+                                                <option value="1"   @if ($employe->is_active == 1) selected @endif>Aktif</option>
+                                                <option value="0" @if ($employe->is_active == 0) selected @endif>Tidak Aktif</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">

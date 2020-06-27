@@ -13,7 +13,7 @@
             @else
                     <a href="{{ route('employe.create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Create</a>
             @endif
-                   <form method="get" action="{{route('user.index')}}">
+                   <form method="get" action="{{route('employe.index')}}">
                         <div class="form-group">
                         <label for="keyword" class="col-sm-2 control-label">Search By Name</label>
                         <div class="col-sm-4">
