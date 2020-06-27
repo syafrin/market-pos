@@ -82,7 +82,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -94,7 +95,36 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrfail($id);
+        $data = $request->all();
+        $validasi = Validator::make($data, [
+            'kategori' => 'required|max:255',
+            'image'=>'sometimes|nullable|image|mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if($validasi->fails()){
+            return redirect()->route('category.edit')->withInput()->withErrors($validasi);
+        }
+
+        if($request->hasFile('image')){
+            if($request->file('image')->isValid()){
+                Storage::disk('upload')->delete($category->image);
+                $img = $request->file('image');
+                $ext = $img->getClientOriginalExtension();
+                $nm_img = "category/".date('YmdHis').".".$ext;
+                $path = 'public/uploads/category';
+                $request->file('image')->move($path, $nm_img);
+                $data['image'] = $nm_img;
+                
+            }
+
+        }
+
+        $category->update($data);
+        return redirect()->route('category.index')->with('status','Kategori berhasil diupdate');
+
+
+
     }
 
     /**
@@ -105,6 +135,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        Storage::disk('upload')->delete($category->image);
+        return redirect()->route('category.index')->with('status', 'Kategori berhasil dihapus');
     }
 }

@@ -12,50 +12,26 @@ Edit Data Pegawai
                         @include('alert.error')       
                     </div>
                     <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{ route('employe.update', [$employe->username]) }}">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="{{ route('category.update', [$category->kd_kategori]) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="username" class="col-sm-2 control-label">Username</label>
+                                   <div class="form-group">
+                                        <label for="kategori" class="col-sm-2 control-label">Kategori Barang</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="username" value="{{ $employe->username }}" disabled>
+                                            <input type="text" class="form-control" id="kategori" name="kategori" value="{{ $category->kategori }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password" class="col-sm-2 control-label">Password</label>
+                                        <label for="image" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="password" name="password" value="">
-                                        </div>
-                                        </div>
-                                    <div class="form-group">
-                                        <label for="nama_pegawai" class="col-sm-2 control-label">Nama Pegawai</label>
-                                        <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai" value="{{ $employe->nama_pegawai }}">
+                                        <img src="{{ asset('uploads/'.$category->image) }}" class="img-thumbnail" width="100px" height="100px" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="jk" class="col-sm-2 control-label">Jenis Kelamin</label>
+                                        <label for="image" class="col-sm-2 control-label">Ganti Image</label>
                                         <div class="col-sm-10">
-                                            <select name="jk" id="jk" class="form-control">
-                                                <option value="pria"  @if ($employe->jk == 'pria') selected @endif>Pria</option>
-                                                <option value="wanita" @if ($employe->jk == 'wanita') selected @endif>Wanita</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat" class="col-sm-2 control-label">Alamat Pegawai</label>
-                                        <div class="col-sm-10">
-                                        <textarea class="form-control" id="alamat" name="alamat"> {{ $employe->alamat }}</textarea>
-                                        </div>
-                                    </div>
-                                     <div class="form-group">
-                                        <label for="is_active" class="col-sm-2 control-label">Status</label>
-                                        <div class="col-sm-10">
-                                            <select name="is_active" id="is_active" class="form-control">
-                                                <option value="1"   @if ($employe->is_active == 1) selected @endif>Aktif</option>
-                                                <option value="0" @if ($employe->is_active == 0) selected @endif>Tidak Aktif</option>
-                                            </select>
+                                            <input type="file" class="form-control" id="image" name="image">
                                         </div>
                                     </div>
                                     

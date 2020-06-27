@@ -42,6 +42,10 @@ return [
     */
 
     'disks' => [
+        'upload' => [
+            'driver' => 'local',
+            'root' => public_path('uploads')
+        ],
 
         'local' => [
             'driver' => 'local',
