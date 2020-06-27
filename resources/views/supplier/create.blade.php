@@ -20,7 +20,7 @@ Create Data Supplier
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="nama_supplier" name="nama_supplier" value="{{ old('nama_supplier') }}">
                                     </div>
-                                </div>
+                                     </div>
                                     <div class="form-group">
                                         <label for="alamat_supplier" class="col-sm-2 control-label">Alamat</label>
                                         <div class="col-sm-10">

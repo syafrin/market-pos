@@ -25,3 +25,4 @@ Route::match(["GET", "POST"], "/register", function(){
 
 Route::resource('user', 'UserController');
 Route::resource('supplier', 'SupplierController')->except(['show']);
+Route::resource('employe', 'EmployeController')->except(['show']);
