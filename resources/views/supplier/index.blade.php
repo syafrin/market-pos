@@ -48,10 +48,10 @@
                             <td>{{ $row->nama_supplier }}</td>
                             <td>{{ $row->alamat_supplier }}</td>
                             <td> 
-                            <form method="post" action="{{ route('supplier.destroy', [$row->id])}}" onsubmit="return confirm('yakin akan mengubah data ini ?')">
+                            <form method="post" action="{{ route('supplier.destroy', [$row->kd_supplier])}}" onsubmit="return confirm('yakin akan menghapus data ini ?')">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <a href="{{ route('supplier.edit', [$row->id])}}" class="btn btn-warning" >edit</a>
+                                <a href="{{ route('supplier.edit', [$row->kd_supplier])}}" class="btn btn-warning" >edit</a>
                                 <button type="submit" class="btn btn-danger">
                                     Delete
                                 </button>                           

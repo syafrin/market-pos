@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-Edit Data User
+Create Data Supplier
 @endsection
 
 @section('content')
@@ -12,42 +12,24 @@ Edit Data User
                         @include('alert.error')       
                     </div>
                     <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{ route('user.update', [$user->id)] }}">
+                            <form class="form-horizontal" method="post" action="{{ route('supplier.store') }}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <label for="nama" class="col-sm-2 control-label">Nama</label>
+                                        <label for="nama_supplier" class="col-sm-2 control-label">Nama Supplier</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                                        <input type="text" class="form-control" id="nama_supplier" name="nama_supplier" value="{{ old('nama_supplier') }}">
                                     </div>
                                 </div>
                                     <div class="form-group">
-                                        <label for="username" class="col-sm-2 control-label">Username</label>
+                                        <label for="alamat_supplier" class="col-sm-2 control-label">Alamat</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="username" name="username" value="{{ $user->name }}">
+                                            <textarea class="form-control" id="alamat_supplier" name="alamat_supplier">{{ old('alamat_supplier') }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Email</label>
-                                        <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password" class="col-sm-2 control-label">Password</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="password" name="password" value="">
-                                        </div>
-                                        </div>
-                                    <div class="form-group">
-                                        <label for="level" class="col-sm-2 control-label">Level</label>
-                                        <div class="col-sm-10">
-                                            <select name="level" id="level" class="form-control">
-                                                <option value="admin" @if($user->level == 'admin') selected @endif>Administrator</option>
-                                                <option value="staf" @if($user->level == 'staf') selected @endif>Staf</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                   
+                                   
+                                   
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">

@@ -31,6 +31,8 @@ class SupplierController extends Controller
     public function create()
     {
         //
+
+        return view('supplier.create');
     }
 
     /**
@@ -41,7 +43,17 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $validasi = Validator::make($data, [
+            'nama_supplier'=> 'required|max:255',
+            'alamat_supplier'=>'required|max:255'
+        ]);
+
+        if($validasi->fails()){
+            return redirect()->route('supplier.create')->withInput()->withErrors($validasi);
+        }
+        Supplier::create($data);
+        return redirect()->route('supplier.index')->with('status', 'Supplier Berhasil Ditambahkan');
     }
 
     /**
@@ -63,7 +75,8 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Supplier::findOrFail($id);
+        return view('supplier.edit',compact('data'));
     }
 
     /**
@@ -75,7 +88,17 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        $data = $request->all();
+        $validasi = Validator::make($data, [
+            'nama_supplier'=>'required|max:255,'.$id,
+            'alamat_supplier' => 'required|max:255,'.$id
+        ]);
+        if($validasi->fails()){
+            return redirect()->route('supplier.edit', [$id])->withErrors($validasi);
+        }
+       $supplier->update($data);
+        return redirect()->route('supplier.index')->with('status','Data Supplier Berhasil Dihapus');
     }
 
     /**
@@ -86,6 +109,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
+        return redirect()->route('supplier.index')->with('status', 'Data Supplier Berhasil Dihapus');
     }
 }
