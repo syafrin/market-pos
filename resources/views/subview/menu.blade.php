@@ -12,6 +12,7 @@
             <li><a href="{{ route('supplier.index') }}"><i class="fa fa-circle-o"></i> Supplier</a></li>
             <li><a href="{{ route('employe.index') }}"><i class="fa fa-circle-o"></i> Pegawai</a></li>
             <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i> Category</a></li>
+            <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i> Produk</a></li>
           </ul>
         </li>
       

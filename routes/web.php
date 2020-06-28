@@ -27,3 +27,4 @@ Route::resource('user', 'UserController');
 Route::resource('supplier', 'SupplierController')->except(['show']);
 Route::resource('employe', 'EmployeController')->except(['show']);
 Route::resource('category', 'CategoryController')->except(['show']);
+Route::resource('product', 'ProductController')->except(['show']);

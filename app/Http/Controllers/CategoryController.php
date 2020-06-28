@@ -103,7 +103,7 @@ class CategoryController extends Controller
         ]);
 
         if($validasi->fails()){
-            return redirect()->route('category.edit')->withInput()->withErrors($validasi);
+            return redirect()->route('category.edit',[$id])->withInput()->withErrors($validasi);
         }
 
         if($request->hasFile('image')){
