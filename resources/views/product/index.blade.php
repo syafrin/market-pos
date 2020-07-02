@@ -13,11 +13,28 @@
             @else
                     <a href="{{ route('product.create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Create</a>
             @endif
+
                    <form method="get" action="{{route('product.index')}}">
                         <div class="form-group">
                         <label for="keyword" class="col-sm-2 control-label">Search By Name</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="keyword" name="keyword" value="{{Request::get('keyword')}}">
+                             <input type="text" class="form-control" id="keyword" name="keyword" value="{{Request::get('keyword')}}">
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        </div>
+                    </form><br/><br/>         
+                   <form method="get" action="{{route('product.index')}}">
+                        <div class="form-group">
+                        <label for="kd_kategori" class="col-sm-2 control-label">Search By Kategori</label>
+                        <div class="col-sm-4">
+                           
+                             <select name="kd_kategori" class="form-control" id="kd_kategori">
+                                @foreach($category as $k)
+                                    <option value="{{ $k->kd_kategori}}" >{{ $k->kategori }}</option>
+                                @endforeach
+                           </select>
                         </div>
                         <div class="col-sm-6">
                             <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
@@ -29,6 +46,11 @@
             @if(Request::get('keyword'))
                     <div class="alert alert-success alert-block">
                         Hasil Pencarian Produk : <b>{{ Request::get('keyword') }}</b>
+                    </div>
+            @endif
+            @if(Request::get('kd_kategori'))
+                    <div class="alert alert-success alert-block">
+                        Hasil Pencarian Produk dengan Kategori : <b>{{ $nama_kateg }}</b>
                     </div>
             @endif
             @include('alert.success');

@@ -28,3 +28,4 @@ Route::resource('supplier', 'SupplierController')->except(['show']);
 Route::resource('employe', 'EmployeController')->except(['show']);
 Route::resource('category', 'CategoryController')->except(['show']);
 Route::resource('product', 'ProductController')->except(['show']);
+Route::resource('transaction', 'TransactionController')->only(['index','create','store','destroy']);

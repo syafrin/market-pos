@@ -18,11 +18,20 @@ class ProductController extends Controller
     public function index(Request $request)
     {
          $product = Product::paginate(5);
+         $category = Category::all();
+         $nama_kateg ="";
         $key = $request->get('keyword');
+        $kateg = $request->get('kd_kategori');
         if($key){
             $product = Product::where('nama_produk', 'LIKE', "%$key%")->paginate(5);
         }
-        return view('product.index', compact('product'));
+
+        if($kateg){
+            $product = Product::where('kd_kategori', $kateg)->paginate(5);
+            $data_k = Category::find($kateg);
+            $nama_kateg = $data_k->kategori;
+        }
+        return view('product.index', compact('product','category','nama_kateg'));
     }
 
     /**
