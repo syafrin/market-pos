@@ -21,5 +21,8 @@ class Transaction extends Model
     public function supplier(){
         return $this->belongsTo('App\Supplier', 'kd_supplier');
     }
+    public function getTglTransaksiAttribute(){
+        return \Carbon\Carbon::parse($this->attributes['tgl_transaksi'])->format('d-F-Y');
+    }
 }
 
