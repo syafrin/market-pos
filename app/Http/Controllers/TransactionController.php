@@ -14,10 +14,17 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $transaction = Transaction::orderBy('tgl_transaksi','DESC')->paginate(5);
-        return view('transaction.index', compact('transaction'));
+        $start = $request->get('start_date');
+        $end = $request->get('end_date');
+        if($start != '' and $end != ''){
+            $transaction = Transaction::whereBetween('tgl_transaksi', [$start, $end])->orderBy('tgl_transaksi', 'DESC')->paginate(5);
+            $start = \Carbon\Carbon::parse($start)->format('d-F-Y');
+            $end = \Carbon\Carbon::parse($end)->format('d-F-Y');
+        }
+        return view('transaction.index', compact('transaction','start','end'));
     }
 
     /**

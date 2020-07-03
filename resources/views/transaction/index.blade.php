@@ -8,26 +8,36 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-            @if(Request::get('keyword'))
-                    <a href="{{ route('transaction.index') }}" class="btn btn-success">Back</a>
+            @if(Request::get('start_date') != '' && Request::get('end_date') != '')
+            <a href="{{ route('transaction.index')}}" class="btn btn-success">back</a>
             @else
-                    <a href="{{ route('transaction.create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Create</a>
-            @endif 
- 
-           
+            <a href="{{ route('transaction.create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Create</a>
+            </div>
+            @endif
+            <br/><br/>
+            <form method="get" action="{{ route('transaction.index') }}">
+                <div class="form-group">
+                    <label for="nama_produk" class="col-sm-2 control-label">Search By Date</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="start_date" placeholder="Start Date" class="form-control datepicker" readonly />
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" name="end_date" placeholder="End Date" class="form-control datepicker" readonly />
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+            </form>
             </div>
             <div class="box-body">
-            @if(Request::get('keyword'))
+            @if(Request::get('start_date') != '' && Request::get('end_date') != '')
                     <div class="alert alert-success alert-block">
-                        Hasil Pencarian Produk : <b>{{ Request::get('keyword') }}</b>
+                        Hasil Pencarian Transaksi Masuk DAri Tanggal : <b>{{ $start }} s/d {{ $end }}</b>
                     </div>
             @endif
-            <!-- @if(Request::get('kd_kategori'))
-                    <div class="alert alert-success alert-block">
-                        Hasil Pencarian Produk dengan Kategori : <b>{{ $nama_kateg }}</b>
-                    </div>
-            @endif -->
-            @include('alert.success');
+           
+            @include('alert.success')
                     <table class="table table-bordered">
                     <thead>
                         <tr>
