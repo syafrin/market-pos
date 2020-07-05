@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('agent', 'Api\AgentController');
+Route::get('search_agent','Api\AgentController@search');
