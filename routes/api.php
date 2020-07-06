@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('agent', 'Api\AgentController');
 Route::get('search_agent','Api\AgentController@search');
+Route::post('login_employe', 'Api\EmployeController@login_employe');
+Route::get('get_category', 'Api\CategoryController@get_all');
+Route::post('get_product', 'Api\ProductController@get_product_category');
