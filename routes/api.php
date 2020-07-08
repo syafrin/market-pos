@@ -22,3 +22,7 @@ Route::get('search_agent','Api\AgentController@search');
 Route::post('login_employe', 'Api\EmployeController@login_employe');
 Route::get('get_category', 'Api\CategoryController@get_all');
 Route::post('get_product', 'Api\ProductController@get_product_category');
+Route::post('add_cart', 'Api\TransactionCartController@add_cart');
+Route::post('get_cart', 'Api\TransactionCartController@get_cart');
+Route::post('delete_item_cart', 'Api\TransactionCartController@delete_item');
+Route::post('delete_cart', 'Api\TransactionCartController@delete_cart');
