@@ -8,8 +8,40 @@ use App\Http\Resources\CartResource;
 use App\Cart;
 use App\Product;
 use Validator;
+use App\TransactionCart;
+use App\TransactionCartDetail;
+use Illuminate\Support\Facades\DB;
 class TransactionCartController extends Controller
 {
+
+    private function get_no_faktur()
+    {
+        $query = DB::select('SELECT MAX(RIGHT(no_faktur,6)) AS max_faktur FROM saletransactions WHERE DATE(tgl_penjualan)=CURDATE()');
+        $kd = "";
+        if(count($query) > 0){
+                foreach($query as $row)
+                {
+                    $tmp = ((int)$row->max_faktur)+1;
+                    $kd = sprintf("%06s", $tmp);
+                }
+        }else{
+            $kd = "000001";
+        }
+        $hasil =  date('dmy').$kd;
+        return $hasil;
+    }
+
+     private function get_total_cart($username)
+    {
+        $data_keranjang = Cart::where('username',$username)->get();
+        $total = 0;
+        foreach($data_keranjang as $row)
+        {
+            $total = $total + ($row->jumlah * $row->harga);
+        }
+        return $total;
+    }
+
     public function add_cart(Request $request){
         $data = $request->all();
         $validator = Validator::make($data,[
@@ -57,6 +89,8 @@ class TransactionCartController extends Controller
 
     }
 
+
+
     public function get_cart(Request $request){
         $username = $request->input('username');
         $cart = Cart::where('username', $username)->get();
@@ -97,4 +131,36 @@ class TransactionCartController extends Controller
                 'message' => 'data keranjang belanja berhasil dihapus'
             ], 200);
     }
+
+    public function checkout(Request $request){
+        $data['tgl_penjualan'] = date("Y-m-d");
+        $data['kd_agen'] = $request->input('kd_agen');
+        $data['username'] = $request->input('username');
+        $data['no_faktur'] = $this->get_no_faktur();
+        $data['total'] = $this->get_total_cart($data['username']);   
+        TransactionCart::create($data);
+
+        $cart = Cart::where('username', $data['username'])->get();
+
+        foreach($cart as $row){
+            $data_cart['no_faktur'] = $data['no_faktur'];
+            $data_cart['kd_produk'] = $row->kd_produk;
+            $data_cart['jumlah'] = $row->jumlah;
+            $data_cart['harga'] = $row->harga;
+
+            TransactionCartDetail::create($data_cart);
+
+            $product = Product::find($row->kd_produk);
+            $item_produk['stok'] = $product->stok - $row->jumlah;
+            $product->update($item_produk);
+        }
+
+        Cart::where('username', $data['username'])->delete();
+        return response()->json([
+            'status' => TRUE,
+            'message' => 'Checkout Berhasil'
+        ]);
+    }
+
+
 }
