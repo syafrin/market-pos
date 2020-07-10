@@ -27,3 +27,5 @@ Route::post('get_cart', 'Api\TransactionCartController@get_cart');
 Route::post('delete_item_cart', 'Api\TransactionCartController@delete_item');
 Route::post('delete_cart', 'Api\TransactionCartController@delete_cart');
 Route::post('checkout', 'Api\TransactionCartController@checkout');
+Route::post('get_transaction', 'Api\TransactionCartController@getTransaction');
+Route::post('get_detail_transaction', 'Api\TransactionCartController@getDetailTransaction');

@@ -8,6 +8,8 @@ use App\Http\Resources\CartResource;
 use App\Cart;
 use App\Product;
 use Validator;
+use App\Http\Resources\TransactionSaleResource;
+use App\Http\Resources\TransactionDetailSaleResource;
 use App\TransactionCart;
 use App\TransactionCartDetail;
 use Illuminate\Support\Facades\DB;
@@ -162,5 +164,29 @@ class TransactionCartController extends Controller
         ]);
     }
 
+    public function getTransaction(Request $request){
+            $username = $request->input('username');
+            $transaction = TransactionCart::where('username', $username)->get();
+            if($transaction->isEmpty()){
+                return response()->json([
+                    'status' => FALSE,
+                    'message' => 'record ditemukan'
+                ], 200);
+            }
 
+            return TransactionSaleResource::collection($transaction);
+    }
+
+    public function getDetailTransaction(Request $request){
+        $no_faktur = $request->input('no_faktur');
+        $datatrans = TransactionCartDetail::where('no_faktur', $no_faktur)->get();
+        if($datatrans->isEmpty()){
+                return response()->json([
+                    'status' => FALSE,
+                    'message' => 'record ditemukan'
+                ], 200);
+            }
+
+            return TransactionDetailSaleResource::collection($datatrans);
+    }
 }
