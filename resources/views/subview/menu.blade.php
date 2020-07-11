@@ -13,6 +13,7 @@
             <li><a href="{{ route('employe.index') }}"><i class="fa fa-circle-o"></i> Pegawai</a></li>
             <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i> Category</a></li>
             <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i> Produk</a></li>
+            <li><a href="{{ route('agents') }}"><i class="fa fa-circle-o"></i> Agen </a></li>
           </ul>
         </li>
       
@@ -23,4 +24,13 @@
               
             </span>
           </a>
- </li></ul>
+        </li>
+        <li>
+          <a href="{{ route('sale-report') }}">
+            <i class="fa fa-th"></i> <span>Laporan Penjualan</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+        </li>
+ </ul>

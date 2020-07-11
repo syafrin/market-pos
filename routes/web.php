@@ -29,3 +29,6 @@ Route::resource('employe', 'EmployeController')->except(['show']);
 Route::resource('category', 'CategoryController')->except(['show']);
 Route::resource('product', 'ProductController')->except(['show']);
 Route::resource('transaction', 'TransactionController')->only(['index','create','store','destroy']);
+Route::get('agent', 'AgentController@index')->name('agents');
+Route::get('sale-report', 'SalesReportController@index')->name('sale-report');
+Route::get('export-pdf', 'SalesReportController@cetak_pdf')->name('export-pdf');
