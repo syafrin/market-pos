@@ -32,3 +32,4 @@ Route::resource('transaction', 'TransactionController')->only(['index','create',
 Route::get('agent', 'AgentController@index')->name('agents');
 Route::get('sale-report', 'SalesReportController@index')->name('sale-report');
 Route::get('export-pdf', 'SalesReportController@cetak_pdf')->name('export-pdf');
+Route::get('export-excel', 'SalesReportController@cetak_excel')->name('export-excel');

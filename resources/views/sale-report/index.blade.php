@@ -10,6 +10,7 @@ Data Agent
           <div class="box">
             <div class="box-header with-border">
                   <a href="{{ route('export-pdf') }}" class="btn btn-success" target="_blank">export pdf</a>        
+                  <a href="{{ route('export-excel') }}" class="btn btn-warning" target="_blank">export excel</a>        
             </div>
             <div class="box-body">
                     <table class="table table-bordered">

@@ -1,6 +1,14 @@
   <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
+         <li>
+          <a href="{{ route('home') }}">
+            <i class="fa fa-th"></i> <span>beranda</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Master</span>
             <span class="pull-right-container">

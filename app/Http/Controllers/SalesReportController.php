@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TransactionCartDetail;
 use PDF;
+use App\Exports\TransaksiExport;
+use Excel;
 class SalesReportController extends Controller
 {
     public function index(){
@@ -17,5 +19,10 @@ class SalesReportController extends Controller
         $pdf = PDF::loadview('sale-report.report_pdf', compact('penjualan'));
         return $pdf->stream();
 
+    }
+
+    public function cetak_excel(){
+        $tgl = now();
+        return Excel::download(new TransaksiExport, 'transaksi_detail_'.$tgl.'.xlsx'); 
     }
 }
