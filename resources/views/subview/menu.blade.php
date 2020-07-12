@@ -16,7 +16,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            @if(Auth::user()->level == 'admin')
             <li class="active"><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i>User</a></li>
+
+            @endif
             <li><a href="{{ route('supplier.index') }}"><i class="fa fa-circle-o"></i> Supplier</a></li>
             <li><a href="{{ route('employe.index') }}"><i class="fa fa-circle-o"></i> Pegawai</a></li>
             <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i> Category</a></li>

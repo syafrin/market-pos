@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('title')
-    Data User
+    Data Suplayer
 @endsection
 
 @section('content')

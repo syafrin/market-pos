@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('title')
-Data Agent
+Laporan Penjualan
 @endsection
 
 @section('content')
@@ -27,12 +27,13 @@ Data Agent
                         </thead>
                         <tbody>
                             @foreach($penjualan as $row)
+                            
                                 <tr>
                                     <td>{{ $loop->iteration + ($penjualan->perPage() * ($penjualan->currentPage()- 1 )) }}</td>
                                     <td>{{ $row->product->nama_produk }}</td>   
                                     <td>{{ $row->jumlah }}</td>   
                                     <td>@rupiah($row->harga)</td>   
-                                     <td>@rupiah($row->transaction->total)</td>
+                                     <td>@rupiah($row->jumlah * $row->harga)</td>
                                     <td>{{ $row->transaction->tgl_penjualan }}</td>   
                                     <td>{{ $row->transaction->agent->nama_toko }}</td>   
                                        

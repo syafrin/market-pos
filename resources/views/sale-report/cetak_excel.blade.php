@@ -28,7 +28,7 @@
                    <td>{{ $row->product->nama_produk }}</td>   
                    <td>{{ $row->jumlah }}</td>   
                    <td>@rupiah($row->harga)</td>   
-                   <td>@rupiah($row->transaction->total)</td>   
+                   <td>@rupiah($row->jumlah * $row->harga)</td>   
                    <td>{{ $row->transaction->tgl_penjualan }}</td>   
                    <td>{{ $row->transaction->agent->nama_toko }}</td> 
                 </tr>

@@ -31,6 +31,16 @@ class HomeController extends Controller
         $agent = Agent::count();
         $trans = TransactionCartDetail::sum('jumlah');
         $transcome = TransactionCART::sum('total');
-        return view('home', compact('product','agent','trans','transcome'));
+
+        $nama_product = [];
+        $jml_penjualan = [];
+        $data = Product::all();
+        foreach($data as $row){
+            $nama_product[] = $row->nama_produk;
+
+            $transaksi = TransactionCartDetail::where('kd_produk', $row->kd_produk)->sum('jumlah');
+            $jml_penjualan[] = $transaksi;
+        }
+        return view('home', compact('product','agent','trans','transcome','nama_product','jml_penjualan'));
     }
 }

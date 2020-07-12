@@ -3,6 +3,8 @@
     Dashboard
 @endsection
 @section('content')
+<link rel="stylesheet" href="{{ asset('chartjs/Chart.min.css')}}" />
+<script src="{{ asset('chartjs/Chart.min.js')}}" ></script>
     <div class="row">
         <div class="col-md-12">
             <div class="box">
@@ -73,5 +75,42 @@
             </div>
         </div>
     </div>
+    <div class="row">
+    <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+                   Grafik Penjualan Produk         
+            </div>
+            <div class="box-body">
+                    <canvas id="myChart"></canvas>
+            </div>
+          </div>
+        </div>
+</div>
+<script>
+      var ctx = document.getElementById("myChart").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: @php echo json_encode($nama_product); @endphp,
+          datasets: [{
+            label: 'Grafik Penjualan',
+            data: @php echo json_encode($jml_penjualan); @endphp,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255,99,132,1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+      });
+</script>
 @endsection
 

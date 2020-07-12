@@ -11,7 +11,7 @@ Data Agent
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-                   //ini bagian header         
+                         
             </div>
             <div class="box-body">
                     <table class="table table-bordered">
