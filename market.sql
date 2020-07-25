@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Jul 2020 pada 07.18
+-- Waktu pembuatan: 25 Jul 2020 pada 04.49
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.7
 
@@ -46,7 +46,9 @@ CREATE TABLE `agents` (
 INSERT INTO `agents` (`kd_agen`, `nama_toko`, `nama_pemilik`, `alamat`, `latitude`, `longitude`, `img_toko`, `created_at`, `updated_at`) VALUES
 (2, 'Toko Ramedia', 'Ibrahum Yahya', 'Jl. Kh. Agus Salim No.348, Wumialo, Kota Tengah, Kota Gorontalo, Gorontalo 96138', '0.558527', '123.049603', 'agent/20200705034356.jpg', '2020-07-05 10:43:56', '2020-07-05 10:43:56'),
 (4, 'Toko Mitra It', 'Ko Kiki', 'S. Parman 45,, Kel. Biawao, Kec. Kota Selatan, Biawao, Kota Sel., Kota Gorontalo', '0.533998', '123.058129', 'agent/20200712043646.jpeg', '2020-07-12 11:36:46', '2020-07-12 11:36:46'),
-(5, 'Karsa Utama Store', 'Hj. Daeng', 'Jl. S. Parman No.77, Biawao, Kota Sel., Kota Gorontalo, Gorontalo 96133', '0.536466', '123.058919', 'agent/20200712044041.jpg', '2020-07-12 11:40:41', '2020-07-12 11:40:41');
+(5, 'Karsa Utama Store', 'Hj. Daeng', 'Jl. S. Parman No.77, Biawao, Kota Sel., Kota Gorontalo, Gorontalo 96133', '0.536466', '123.058919', 'agent/20200712044041.jpg', '2020-07-12 11:40:41', '2020-07-12 11:40:41'),
+(7, 'mitra home depo', 'ko kiki', 'jl agus salim', '0.6167763', '123.0826315', 'agent/20200716200053.jpg', '2020-07-17 03:00:53', '2020-07-17 03:00:53'),
+(8, 'toko amasar34', 'jhoen doe', 'kota gorontalo', '0.6167592', '123.0826349', 'agent/20200716234205.jpg', '2020-07-17 06:42:05', '2020-07-17 06:42:05');
 
 -- --------------------------------------------------------
 
@@ -201,7 +203,7 @@ INSERT INTO `products` (`kd_produk`, `kd_kategori`, `nama_produk`, `harga`, `img
 (11, 3, 'Celana Katun Pria', 290000, 'product/20200712041305.jpg', 24, '2020-07-12 11:13:05', '2020-07-12 11:22:37'),
 (12, 4, 'Binder Clip', 50000, 'product/20200712041337.jpg', 30, '2020-07-12 11:13:37', '2020-07-12 11:24:39'),
 (13, 4, 'Binder Folder', 23000, 'product/20200712041353.jpg', 23, '2020-07-12 11:13:53', '2020-07-12 11:25:03'),
-(14, 4, 'BallPoint', 25000, 'product/20200712041426.jpg', 20, '2020-07-12 11:14:26', '2020-07-12 11:25:42'),
+(14, 4, 'BallPoint', 25000, 'product/20200712041426.jpg', 18, '2020-07-12 11:14:26', '2020-07-25 06:10:06'),
 (15, 4, 'Ballpoin tinta', 15000, 'product/20200712041449.jpg', 60, '2020-07-12 11:14:49', '2020-07-12 11:46:00'),
 (16, 4, 'Buku Tulis', 5600, 'product/20200712041511.jpg', 120, '2020-07-12 11:15:11', '2020-07-12 11:26:30'),
 (17, 4, 'Buku Album', 7800, 'product/20200712041536.jpg', 50, '2020-07-12 11:15:36', '2020-07-12 11:52:38');
@@ -230,7 +232,8 @@ INSERT INTO `saledetails` (`kd_saledetail`, `no_faktur`, `kd_produk`, `jumlah`, 
 (1, '090720000001', 5, 2, 2100000, '2020-07-10 00:34:15', '2020-07-10 00:34:15'),
 (2, '120720000001', 17, 20, 7800, '2020-07-12 11:52:38', '2020-07-12 11:52:38'),
 (3, '120720000001', 9, 10, 560000, '2020-07-12 11:56:45', '2020-07-12 11:56:45'),
-(4, '120720000001', 8, 4, 10200000, '2020-07-12 11:58:29', '2020-07-12 11:58:29');
+(4, '120720000001', 8, 4, 10200000, '2020-07-12 11:58:29', '2020-07-12 11:58:29'),
+(5, '240720000001', 14, 2, 25000, '2020-07-25 06:10:06', '2020-07-25 06:10:06');
 
 -- --------------------------------------------------------
 
@@ -257,7 +260,8 @@ INSERT INTO `saletransactions` (`kd_tsale`, `no_faktur`, `tgl_penjualan`, `kd_ag
 (1, '090720000001', '2020-07-09', 2, 'fahmi12', 4200000, '2020-07-10 00:34:15', '2020-07-10 00:34:15'),
 (2, '120720000001', '2020-07-12', 2, 'fahmi12', 156000, '2020-07-12 11:52:38', '2020-07-12 11:52:38'),
 (3, '120720000001', '2020-07-12', 5, 'fahmi12', 5600000, '2020-07-12 11:56:45', '2020-07-12 11:56:45'),
-(4, '120720000001', '2020-07-12', 4, 'fahmi12', 40800000, '2020-07-12 11:58:29', '2020-07-12 11:58:29');
+(4, '120720000001', '2020-07-12', 4, 'fahmi12', 40800000, '2020-07-12 11:58:29', '2020-07-12 11:58:29'),
+(5, '240720000001', '2020-07-24', 2, 'fahmi12', 50000, '2020-07-25 06:10:06', '2020-07-25 06:10:06');
 
 -- --------------------------------------------------------
 
@@ -450,13 +454,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `agents`
 --
 ALTER TABLE `agents`
-  MODIFY `kd_agen` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kd_agen` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `kd_keranjang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `kd_keranjang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `categories`
@@ -486,13 +490,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT untuk tabel `saledetails`
 --
 ALTER TABLE `saledetails`
-  MODIFY `kd_saledetail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kd_saledetail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `saletransactions`
 --
 ALTER TABLE `saletransactions`
-  MODIFY `kd_tsale` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kd_tsale` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `suppliers`
